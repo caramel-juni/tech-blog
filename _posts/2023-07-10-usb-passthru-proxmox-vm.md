@@ -5,7 +5,7 @@ categories: techtuts
 ---
 > Using TP-Link TL-WN722N
 
-<div class="centre-h2"> <img src="\assets\images\2023-07-10-usb-passthru-proxmox-vm\51YRuNnOOxL._AC_UF894,1000_QL80_.jpg" width="200" height="auto"> </div>
+<div class="centre-h2"> <img src="{{ site.baseurl }}\assets\images\2023-07-10-usb-passthru-proxmox-vm\51YRuNnOOxL._AC_UF894,1000_QL80_.jpg" width="200" height="auto"> </div>
 
 The GUI way of adding a USB device to a Proxmox VM didn't work for me when using a USB network adapter (the device id was not showing up when trying to add to the VM via the GUI), so here is a simple manual workaround.
 
@@ -13,7 +13,7 @@ The GUI way of adding a USB device to a Proxmox VM didn't work for me when using
 
 2. Using the CLI on the Proxmox host machine (recommended to use ssh/webGUI CLI), list all connected USB devices with `lsusb`:
 
-    ![Alt text](\assets\images\2023-07-10-usb-passthru-proxmox-vm\92c790c2-8df1-4fe9-b207-8822f3458801.png)
+    ![Alt text]({{ site.baseurl }}\assets\images\2023-07-10-usb-passthru-proxmox-vm\92c790c2-8df1-4fe9-b207-8822f3458801.png)
 
 3. Note the ID of the desired device. In this case the `TP-Link TL-WN722`, with ID: `2357:010c`
 

@@ -20,7 +20,7 @@ Both of these have been built to **include TPM 2.0 functionality**, but may not 
 
     Via `Manage` --> `Services` --> `TSM-SSH`, then right click and `Run`.
     
-    ![Alt text](\assets\images\2023-02-15-esxi-upgrade-and-tpm\81ae4507-7995-451a-ba56-c96f2d29bbb4.png)
+    ![Alt text]({{ site.baseurl }}\assets\images\2023-02-15-esxi-upgrade-and-tpm\81ae4507-7995-451a-ba56-c96f2d29bbb4.png)
 
 2. [SSH](https://www.tomshardware.com/how-to/use-ssh-connect-to-remote-computer) into your ESXi box, then check [https://esxi-patches.v-front.de/](https://esxi-patches.v-front.de/) for the latest ESXi patches. Patches are cumulative, so download the latest one (at the top, highlighted).
 

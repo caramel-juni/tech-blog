@@ -4,7 +4,7 @@ title: "pfSense troubleshooting: Updating to 23.01 from 22.05"
 categories: techtuts
 ---
 
-![Alt text](\assets\images\2023-06-08-pfsense-troubleshooting-update-2301\image.png)
+![Alt text]({{ site.baseurl }}\assets\images\2023-06-08-pfsense-troubleshooting-update-2301\image.png)
 
 Here is a little guide from a nightmare I encountered whilst trying to perform a maintenance update on a pfSense router... I hope my pain and suffering can help someone else :').
 

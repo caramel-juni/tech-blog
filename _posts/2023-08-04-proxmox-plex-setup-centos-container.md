@@ -46,7 +46,7 @@ I know that my use case is incredibly specific, but after scouring the web for g
 
     **Figure 1: Finding CT Templates**
 
-    ![Alt text](\assets\images\2023-08-04-proxmox-plex-setup-centos-container\e50f054c-0ace-44ed-bb6e-96fe76c6619b.png)
+    ![Alt text]({{ site.baseurl }}\assets\images\2023-08-04-proxmox-plex-setup-centos-container\e50f054c-0ace-44ed-bb6e-96fe76c6619b.png)
 
     **Figure 2: LXC Images vs Standard Image**
 

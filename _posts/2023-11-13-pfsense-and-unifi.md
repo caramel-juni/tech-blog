@@ -14,7 +14,7 @@ switch*](https://ubiquitistore.com.au/product/ubiquiti-unifi-48-port-managed-gig
 In the hope that this can be of use to others out there, I have written up my process for doing so below. But first,
 here is a contextual network diagram for my setup:
 
-<img src="\assets\images\2023-11-13-pfsense-and-unifi\netdia.png" width="" height="">
+<img src="{{ site.baseurl }}\assets\images\2023-11-13-pfsense-and-unifi\netdia.png" width="" height="">
 
 
 ## **Steps taken**:
