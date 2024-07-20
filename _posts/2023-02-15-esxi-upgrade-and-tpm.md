@@ -24,7 +24,7 @@ Both of these have been built to **include TPM 2.0 functionality**, but may not 
 
 2. [SSH](https://www.tomshardware.com/how-to/use-ssh-connect-to-remote-computer) into your ESXi box, then check [https://esxi-patches.v-front.de/](https://esxi-patches.v-front.de/) for the latest ESXi patches. Patches are cumulative, so download the latest one (at the top, highlighted).
 
-    ![Alt text](\assets\images\2023-02-15-esxi-upgrade-and-tpm\Untitled.png)
+    ![Alt text]({{ site.baseurl }}\assets\images\2023-02-15-esxi-upgrade-and-tpm\Untitled.png)
 
     Copy the text from the pop-up generated after clicking the link, and paste it into the shell of the system via SSH. The code is provided below for convenience (lines separated), but DO NOT just copy the second code block, as it will download the version for `build 8.0b-21203435`, which will change over time.
 
@@ -40,7 +40,7 @@ Both of these have been built to **include TPM 2.0 functionality**, but may not 
 
     When running the second code block, the update is downloaded, which can take 5-10minutes depending on your internet connection. Cross your fingers, pray to the networking gods, and just wait 🙏.
 
-    ![Alt text](\assets\images\2023-02-15-esxi-upgrade-and-tpm\238fd9a9-3c0c-4d64-b10b-7f7d78686f87.png)
+    ![Alt text]({{ site.baseurl }}\assets\images\2023-02-15-esxi-upgrade-and-tpm\238fd9a9-3c0c-4d64-b10b-7f7d78686f87.png)
 
 3. Finally, run the final code block to adjust the firewall rules now you're done:
 

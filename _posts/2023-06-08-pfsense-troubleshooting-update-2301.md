@@ -16,7 +16,7 @@ Here is a little guide from a nightmare I encountered whilst trying to perform a
 
 I initiated system reboot and upgrade via the pfSense web UI at 1pm on May 15th. Everything seemed to go well in the web UI, until it restarted and then got stuck reassigning the network interfaces.
 
-![Alt text](\assets\images\2023-06-08-pfsense-troubleshooting-update-2301\54985275-a984-494f-923a-e9a771db2005.png)
+![Alt text]({{ site.baseurl }}\assets\images\2023-06-08-pfsense-troubleshooting-update-2301\54985275-a984-494f-923a-e9a771db2005.png)
 
 Looked like the update was successful but got confused when it got to reassigning the interfaces (aka which network interfaces were associated with which network config files previously created) resulting in the boot process being interrupted and not completed, meaning no wifi.
 
@@ -24,17 +24,17 @@ To fix, connected to the pfSense box directly via serial (details at end) & navi
 
 By cross-referencing with the previous backup’s XML data of `<interfaces>`, it was determined that these were the previous assignments:
 
-![Alt text](\assets\images\2023-06-08-pfsense-troubleshooting-update-2301\21412848-0228-41eb-b793-7045eea4ee70.png)
+![Alt text]({{ site.baseurl }}\assets\images\2023-06-08-pfsense-troubleshooting-update-2301\21412848-0228-41eb-b793-7045eea4ee70.png)
 
 > note: for opt3&4, it is ixl0 & ixl1, NOT ix10/ix11 (is an l and NOT a 1)
 
-![Alt text](\assets\images\2023-06-08-pfsense-troubleshooting-update-2301\4e5fde35-f32e-4abd-912b-a8c8234755e7.png)
+![Alt text]({{ site.baseurl }}\assets\images\2023-06-08-pfsense-troubleshooting-update-2301\4e5fde35-f32e-4abd-912b-a8c8234755e7.png)
 
 > extract from “config-XXXXXXXXXX.xml”
 
 After reassigning the network interfaces, all seemed to be well and the box booted without any noticeable issues into the new OS.
 
-![Alt text](\assets\images\2023-06-08-pfsense-troubleshooting-update-2301\16014c4f-ddbf-480a-8731-980e55020531.png)
+![Alt text]({{ site.baseurl }}\assets\images\2023-06-08-pfsense-troubleshooting-update-2301\16014c4f-ddbf-480a-8731-980e55020531.png)
 
 From here, I reconnected in powershell by IP via SSH to check it was working, and then accessed the webUI. 🥳
 
@@ -54,19 +54,19 @@ From here, I reconnected in powershell by IP via SSH to check it was working, an
 
 6. Once installed, open device manager (on Windows). There should be a new option called `Silicon Labs CP210x USB to UART Bridge` or similar. The **COM[`X`]** at the end will vary depending on which of your device’s serial ports are already in use.
 
-    ![Alt text](\assets\images\2023-06-08-pfsense-troubleshooting-update-2301\dc5ecce7-bbd4-41a1-ba7c-d7a766ddb608.png)
+    ![Alt text]({{ site.baseurl }}\assets\images\2023-06-08-pfsense-troubleshooting-update-2301\dc5ecce7-bbd4-41a1-ba7c-d7a766ddb608.png)
 
 7. [Download](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) & open puTTY, and create a session with the following settings, replacing COM6 with whatever **COM[`X`]** your device listed as being open to communicate with `CP210x` in device manager.
 
-    ![Alt text](\assets\images\2023-06-08-pfsense-troubleshooting-update-2301\d47049f6-8c1b-45f7-b74e-5aaa7a3c0bcb.png)
+    ![Alt text]({{ site.baseurl }}\assets\images\2023-06-08-pfsense-troubleshooting-update-2301\d47049f6-8c1b-45f7-b74e-5aaa7a3c0bcb.png)
 
 8. Go to `Session` → `Logging` and track all output to a log file saved locally on your machine.
 
-    ![Alt text](\assets\images\2023-06-08-pfsense-troubleshooting-update-2301\c526fa04-bf4d-4af5-bf35-3814c46ea260.png)
+    ![Alt text]({{ site.baseurl }}\assets\images\2023-06-08-pfsense-troubleshooting-update-2301\c526fa04-bf4d-4af5-bf35-3814c46ea260.png)
 
 9. Click `Open` and session should begin.
 
-    ![Alt text](\assets\images\2023-06-08-pfsense-troubleshooting-update-2301\43a6dee8-d8a4-42fa-be42-2ffdf14fdac3.png)
+    ![Alt text]({{ site.baseurl }}\assets\images\2023-06-08-pfsense-troubleshooting-update-2301\43a6dee8-d8a4-42fa-be42-2ffdf14fdac3.png)
 
 ## Alternative solutions:
 
@@ -80,5 +80,5 @@ Thankfully a restore point was (and should, by default on pfSense installations)
 
     in case of further panic... here is a link to further [troubleshooting](https://agix.com.au/restore-pfsense-from-backup-using-the-cli-command-line/). I wish you well on your journey, and hope it is substantially shorter than mine was 🙃😭.
 
-<div class="centre-h2"> <img src="\assets\images\2023-06-08-pfsense-troubleshooting-update-2301\face-keyboard.gif" width="550" height="auto"> </div>
+<div class="centre-h2"> <img src="{{ site.baseurl }}\assets\images\2023-06-08-pfsense-troubleshooting-update-2301\face-keyboard.gif" width="550" height="auto"> </div>
 

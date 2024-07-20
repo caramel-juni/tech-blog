@@ -21,24 +21,24 @@ here is a contextual network diagram for my setup:
 
 
 1. Plug in an ethernet cable to an unused port on the pfSense box. In my case, this is **ETH3** (gray cable).
-    <img src="\assets\images\2023-11-13-pfsense-and-unifi\eth3.jpg" width="" height="">
+    <img src="{{ site.baseurl }}\assets\images\2023-11-13-pfsense-and-unifi\eth3.jpg" width="" height="">
 
 2. Login to the pfSense router GUI via the browser (default address is `192.168.0.1`, or `XXX.XXX.XXX.1` depending on how you've setup the management LAN it's on), and navigate to **Interfaces / Switches / Ports**.
 
-    <img src="\assets\images\2023-11-13-pfsense-and-unifi\image.png" width="50%" height="50%">
+    <img src="{{ site.baseurl }}\assets\images\2023-11-13-pfsense-and-unifi\image.png" width="50%" height="50%">
 
 
 3. Check the targeted port ETH3 is **ACTIVE**, and then edit the **Port VID** to be **whatever VLAN tag you want to be applied to passing UNTAGGED traffic by DEFAULT.** For ex, `Port VID = 80` will mean any **untagged passing traffic** through ETH3 gets a VLAN tag of `80`.
 
-    ![Alt text](\assets\images\2023-11-13-pfsense-and-unifi\image0.png)
+    ![Alt text]({{ site.baseurl }}\assets\images\2023-11-13-pfsense-and-unifi\image0.png)
 
 4. **Interfaces / Switches / VLANs**: Click `+ Add Tag`
 
     Add whatever VLAN tag you wish to target (in this case `80`), give it a description, and add the **Members**, AKA <mark style="color:rgb(199, 255, 252)"><span style="color: rgb(0, 0, 0); font-weight: bold; font-style: italic;">the numbered ETH ports on the pfSense (ETH1 to ETH10) that will allow this VLAN through.</span></mark>
 
-    ![Alt text](\assets\images\2023-11-13-pfsense-and-unifi\image-2.png)
+    ![Alt text]({{ site.baseurl }}\assets\images\2023-11-13-pfsense-and-unifi\image-2.png)
 
-    ![Alt text](\assets\images\2023-11-13-pfsense-and-unifi\image-3.png)
+    ![Alt text]({{ site.baseurl }}\assets\images\2023-11-13-pfsense-and-unifi\image-3.png)
 
     **I have added ETH3 as a member**, and told pfSense to expect the traffic passing through to be **untagged**.
     This means that any **untagged traffic through ETH3 will be assigned a VLAN tag of 80** (ETH3’s Port VID, as specified
@@ -59,18 +59,18 @@ here is a contextual network diagram for my setup:
 
 
 5. **Interfaces / Assignments / VLANs**: Click `+ Add`
-    ![Alt text](\assets\images\2023-11-13-pfsense-and-unifi\image5.png)
+    ![Alt text]({{ site.baseurl }}\assets\images\2023-11-13-pfsense-and-unifi\image5.png)
 
     For **Parent Interface**, select whatever interface corresponds to `ETH3`, or a `lagg` group it’s part of (if any have
     been created by default/you). In my case, I have `lagg0` bundling connections from ETH1-8 for load balancing purposes,
     so it's my parent interface.
 
     Assign it the desired VLAN tag (`80` in my case) and give it a description before pressing `Save`.
-    ![Alt text](\assets\images\2023-11-13-pfsense-and-unifi\image-6.png)
+    ![Alt text]({{ site.baseurl }}\assets\images\2023-11-13-pfsense-and-unifi\image-6.png)
 
 6. **Interfaces / Interface Assignments**: You should now be able to select the VLAN you created from the dropdown next to **Available Network Ports**, and click `+ Add` to assign it to an Interface.
 
-    ![Alt text](\assets\images\2023-11-13-pfsense-and-unifi\image-7.png)
+    ![Alt text]({{ site.baseurl }}\assets\images\2023-11-13-pfsense-and-unifi\image-7.png)
 
     You can then set up the interface by clicking on the blue link, assigning an ip type, range, and other cool stuff. I set
     this interface (& thus `VLAN 80`) to have an ip range of `192.168.80.X/24`. This can be any ip address as long as it
@@ -79,11 +79,11 @@ here is a contextual network diagram for my setup:
 
     Then tick `Enable Iterface` and press `Save`.
 
-    ![Alt text](\assets\images\2023-11-13-pfsense-and-unifi\image-8.png)
+    ![Alt text]({{ site.baseurl }}\assets\images\2023-11-13-pfsense-and-unifi\image-8.png)
 
     Don't forget to `Apply Changes` before navigating away!
 
-    ![Alt text](\assets\images\2023-11-13-pfsense-and-unifi\image-9.png)
+    ![Alt text]({{ site.baseurl }}\assets\images\2023-11-13-pfsense-and-unifi\image-9.png)
 
 7. Navigate to **Services / DHCP Server** and select the interface name you just created (`ADLSWITCH` for me).
 
@@ -91,31 +91,31 @@ here is a contextual network diagram for my setup:
     other custom settings. The only one I set was **Domain Name** to `switch.adl`, to make it nice and easy to see which
     network I am on if I do an `ipconfig`/`ifconfig` from a connected device.
 
-    ![Alt text](\assets\images\2023-11-13-pfsense-and-unifi\image-10.png)
+    ![Alt text]({{ site.baseurl }}\assets\images\2023-11-13-pfsense-and-unifi\image-10.png)
 
-    ![Alt text](\assets\images\2023-11-13-pfsense-and-unifi\image-11.png)
+    ![Alt text]({{ site.baseurl }}\assets\images\2023-11-13-pfsense-and-unifi\image-11.png)
 
     Then scroll down to the bottom and click `Save`.
 
 8. Navigate to **Firewall / Rules**, and select the interface name you just created (`ADLSWITCH` for me). Click on `Add` to create a temporary "allow all" rule to test the configuration works.
 
-    ![Alt text](\assets\images\2023-11-13-pfsense-and-unifi\image-12.png)
+    ![Alt text]({{ site.baseurl }}\assets\images\2023-11-13-pfsense-and-unifi\image-12.png)
 
     Use the following settings:
 
-    ![Alt text](\assets\images\2023-11-13-pfsense-and-unifi\image-13.png)
+    ![Alt text]({{ site.baseurl }}\assets\images\2023-11-13-pfsense-and-unifi\image-13.png)
 
     Don't forget to harden your firewall later, based on your use case and security purposes!
 
 9. Go to **Services / DNS Resolver** and check that **Network Interfaces has “All” selected.** This is <mark class="simple-highlight">very important</mark> - and will ensure the DNS Resolver will know to look for and operate on your new network interface.
 
-    ![Alt text](\assets\images\2023-11-13-pfsense-and-unifi\image-14.png)
+    ![Alt text]({{ site.baseurl }}\assets\images\2023-11-13-pfsense-and-unifi\image-14.png)
 
     Scroll down and press `Save`, *THEN* scroll back up and press `Apply Changes` at the top of the page.
 
-    ![Alt text](\assets\images\2023-11-13-pfsense-and-unifi\image-15.png)
+    ![Alt text]({{ site.baseurl }}\assets\images\2023-11-13-pfsense-and-unifi\image-15.png)
 
-    ![Alt text](\assets\images\2023-11-13-pfsense-and-unifi\image-16.png)
+    ![Alt text]({{ site.baseurl }}\assets\images\2023-11-13-pfsense-and-unifi\image-16.png)
 
 10. From here, you should now have a functioning VLAN setup, managed by pfSense. Give yourself a pat on the back and have a cookie, you've earned it ~ 🍪!
 
@@ -146,9 +146,9 @@ on the port they're plugged into.***
     Create a `VLAN-only` UniFi ‘Network’, specifying **the same VLAN ID as set in pfSense** (in my case, `80` - these MUST
     MATCH between UniFi & pfSense!).
 
-    ![Alt text](\assets\images\2023-11-13-pfsense-and-unifi\image-17.png)
+    ![Alt text]({{ site.baseurl }}\assets\images\2023-11-13-pfsense-and-unifi\image-17.png)
 
-    ![Alt text](\assets\images\2023-11-13-pfsense-and-unifi\image-18.png)
+    ![Alt text]({{ site.baseurl }}\assets\images\2023-11-13-pfsense-and-unifi\image-18.png)
 
 5. Go to **System / Profiles**.
 
@@ -157,9 +157,9 @@ on the port they're plugged into.***
     E.g. by setting the **native network** to the UniFi network we just created will **add the `VLAN 80` to passing
     traffic**, **BEFORE it reaches the pfSense.**
 
-    ![Alt text](\assets\images\2023-11-13-pfsense-and-unifi\image-19.png)
+    ![Alt text]({{ site.baseurl }}\assets\images\2023-11-13-pfsense-and-unifi\image-19.png)
 
-    ![Alt text](\assets\images\2023-11-13-pfsense-and-unifi\image-20.png)
+    ![Alt text]({{ site.baseurl }}\assets\images\2023-11-13-pfsense-and-unifi\image-20.png)
 
 
 6. Recall from Step 3 that we configured ETH3 to **add a VLAN tag of `80`** (matching its `Port VID`) to **all UNTAGGED traffic** passing through it by default.
@@ -172,15 +172,15 @@ on the port they're plugged into.***
 
     See below: now BOTH ports `ETH3` & `ETH7` are configured to let through traffic tagged with **VLAN 75**.
 
-    ![Alt text](\assets\images\2023-11-13-pfsense-and-unifi\image-21.png)
+    ![Alt text]({{ site.baseurl }}\assets\images\2023-11-13-pfsense-and-unifi\image-21.png)
 
-    ![Alt text](\assets\images\2023-11-13-pfsense-and-unifi\image-4.png)
+    ![Alt text]({{ site.baseurl }}\assets\images\2023-11-13-pfsense-and-unifi\image-4.png)
 
 
 <h2 class="centre-h2 bold"> And now... you're done! </h2>
 
 <h3 class="centre-h2"> Now you should be able to use a UniFi switch to tag traffic coming through particular ports with specified VLAN tags, & have it routed to the corresponding VLAN network on the pfsense! </h3>
 
-<div class="centre-h2"> <img src="\assets\images\2023-11-13-pfsense-and-unifi\celebrate.gif"> </div>
+<div class="centre-h2"> <img src="{{ site.baseurl }}\assets\images\2023-11-13-pfsense-and-unifi\celebrate.gif"> </div>
 
 ---

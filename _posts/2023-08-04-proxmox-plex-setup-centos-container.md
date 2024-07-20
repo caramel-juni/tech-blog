@@ -50,16 +50,16 @@ I know that my use case is incredibly specific, but after scouring the web for g
 
     **Figure 2: LXC Images vs Standard Image**
 
-    ![Alt text](\assets\images\2023-08-04-proxmox-plex-setup-centos-container\069bb70d-9876-4d23-bcd9-f770b78adedc.png)
+    ![Alt text]({{ site.baseurl }}\assets\images\2023-08-04-proxmox-plex-setup-centos-container\069bb70d-9876-4d23-bcd9-f770b78adedc.png)
 
 2. **After the CT template has been downloaded, installing is fairly straightforward.**
     I followed the following video to get up to speed on what was recommended for a container install.
 
     Here are the specs for my installation of CentOS 9 Stream, running a Plex Server which would have 2-3 users MAX (these are only testing values, take them with a grain of salt!):
 
-    ![Alt text](\assets\images\2023-08-04-proxmox-plex-setup-centos-container\2434eda3-0247-48df-947b-9614ee44e17d.png)
+    ![Alt text]({{ site.baseurl }}\assets\images\2023-08-04-proxmox-plex-setup-centos-container\2434eda3-0247-48df-947b-9614ee44e17d.png)
 
-    ![Alt text](\assets\images\2023-08-04-proxmox-plex-setup-centos-container\5d7670d4-5dc4-40d8-8de1-a02feb276966.png)
+    ![Alt text]({{ site.baseurl }}\assets\images\2023-08-04-proxmox-plex-setup-centos-container\5d7670d4-5dc4-40d8-8de1-a02feb276966.png)
 
 3. Once the container has been setup and you can access the console (visuals included in above video, it's pretty straightforward), login using root (and preferably setup a lower privilege user if you're using the system for important things) and your container is ready to use!.
 
@@ -86,7 +86,7 @@ Plug in your USB to the server (in my case, my brother's old laptop). Nagivate t
 
 Thus, my SSD is `sdd`, which checks out given it's been identified as `SSD` with `1.00TB` of storage. It is best practice to have the drive using GPT, although I will be attempting to use one still using MBR, as it has worked before for me.
 
-![Alt text](\assets\images\2023-08-04-proxmox-plex-setup-centos-container\212d77a6-88cd-47d8-9c21-d186f24e2da4.png)
+![Alt text]({{ site.baseurl }}\assets\images\2023-08-04-proxmox-plex-setup-centos-container\212d77a6-88cd-47d8-9c21-d186f24e2da4.png)
 
 > ### **Testing the Waters #2: GPT vs. MBR**
 
@@ -96,7 +96,7 @@ Thus, my SSD is `sdd`, which checks out given it's been identified as `SSD` with
 
     After the text has been printed, look near the bottom for your chosen device, in my case `sdd`. It's product name and actual usable size (smaller than but close to its advertised size) should be listed too. Take note of the device's identifier, which includes its location on the system. For me, it's listed under 'Device' at the bottom, as `/dev/sdd1`.
 
-    ![Alt text](\assets\images\2023-08-04-proxmox-plex-setup-centos-container\d7352649-ef16-4aeb-b109-5d164023e67e.png)
+    ![Alt text]({{ site.baseurl }}\assets\images\2023-08-04-proxmox-plex-setup-centos-container\d7352649-ef16-4aeb-b109-5d164023e67e.png)
 
 2. Now we know the path to the device, we need to make a folder on our home system for it to be accessed from. I think of this as creating its new address - the SSD has gone from floating around in the ether, homeless, and we're now making a directory on our system for it to call home. I poked around a bit using the `cd` (`cd` = **change directory** - essentially how you traverse your Linux system in the CLI) and `ls` (`ls` = **list contents in current directory**) commands, before deciding to make a new directory in `/mnt/pve/`, called `EXT_SSD`. I suggest navigating to where you'd like the directory to be and **then** making it, as not all system's file structures are the same.
 
@@ -104,7 +104,7 @@ Thus, my SSD is `sdd`, which checks out given it's been identified as `SSD` with
 
     `mkdir YOUR_DIRECTORY_NAME_HERE`
 
-    ![Alt text](\assets\images\2023-08-04-proxmox-plex-setup-centos-container\f1562673-1712-4dab-8f58-dfbc0106998a.png)
+    ![Alt text]({{ site.baseurl }}\assets\images\2023-08-04-proxmox-plex-setup-centos-container\f1562673-1712-4dab-8f58-dfbc0106998a.png)
 
 3. Now, we need to mount the device so that the system can access its contents. This command takes the following form:
 
@@ -114,14 +114,14 @@ This is essentially telling the system to point my SSD (which has the identifier
 
 To test if it worked, I navigated to its new home with `cd mnt/pve/EXT_SSD/` and then listed its contents and... success! I can now access my files on an external SSD within Linux.
 
-![Alt text](\assets\images\2023-08-04-proxmox-plex-setup-centos-container\4a1ee575-6f6a-4ca2-a52f-045261e4163b.png)
+![Alt text]({{ site.baseurl }}\assets\images\2023-08-04-proxmox-plex-setup-centos-container\4a1ee575-6f6a-4ca2-a52f-045261e4163b.png)
 
 
 > **Important Note:** Every time my system reboots, the device needs to be manually re-mounted (aka repeating step 3) in order to access the files on the SSD.
 
 > To avoid having to do this, I modified the crontabs file (specifies tasks to be run ahead of time/periodically) using `sudo crontabs -e` . I added `@reboot` to specify the task to run upon reboot, added `sudo` at the start just to ensure it runs even if logging in with a lower privilege user, and ended it with & to tell the system to keep going & setting up after running this command.
 
-> ![Alt text](\assets\images\2023-08-04-proxmox-plex-setup-centos-container\924eddd8-ffd1-47a6-93eb-8c324bde0a91.png)
+> ![Alt text]({{ site.baseurl }}\assets\images\2023-08-04-proxmox-plex-setup-centos-container\924eddd8-ffd1-47a6-93eb-8c324bde0a91.png)
 
 > I learnt this [here](https://www.youtube.com/watch?v=Gl9HS7-H0mI).
 
@@ -132,10 +132,10 @@ To test if it worked, I navigated to its new home with `cd mnt/pve/EXT_SSD/` and
 
 ### ~ miscellaneous images to be used in future tutorials if i return to this ~
 
-![Alt text](\assets\images\2023-08-04-proxmox-plex-setup-centos-container\1327d5e1-354e-4fb3-a104-a1144c537db4.png)
+![Alt text]({{ site.baseurl }}\assets\images\2023-08-04-proxmox-plex-setup-centos-container\1327d5e1-354e-4fb3-a104-a1144c537db4.png)
 
-![Alt text](\assets\images\2023-08-04-proxmox-plex-setup-centos-container\435c87ee-a2ff-41e3-831b-8b6b19ea58dd.png)
+![Alt text]({{ site.baseurl }}\assets\images\2023-08-04-proxmox-plex-setup-centos-container\435c87ee-a2ff-41e3-831b-8b6b19ea58dd.png)
 
-![Alt text](\assets\images\2023-08-04-proxmox-plex-setup-centos-container\a323178c-9191-4dde-823d-99a3d0bef9e2.png)
+![Alt text]({{ site.baseurl }}\assets\images\2023-08-04-proxmox-plex-setup-centos-container\a323178c-9191-4dde-823d-99a3d0bef9e2.png)
 
-![Alt text](\assets\images\2023-08-04-proxmox-plex-setup-centos-container\84802981-73da-427a-a7ab-1d2ef2e235cd.png)
+![Alt text]({{ site.baseurl }}\assets\images\2023-08-04-proxmox-plex-setup-centos-container\84802981-73da-427a-a7ab-1d2ef2e235cd.png)
