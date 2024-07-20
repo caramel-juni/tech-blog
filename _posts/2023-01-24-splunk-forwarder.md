@@ -22,7 +22,7 @@ categories: techtuts
 
 2. <mark style="color:rgb(255, 255, 213)"><span style="color: rgb(0, 0, 0); font-weight: bold; font-style: italic;">[OPT]</span></mark> Go to pfsense web UI, and create & configure the instance that you want to monitor. Once up and running, go to 'Logs View' and select the instance to view.  
 
-    ![](\assets\images\2023-01-24-splunk-forwarder\splunk3.png)
+    ![]({{ site.baseurl }}\assets\images\2023-01-24-splunk-forwarder\splunk3.png)
 
     ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1674202427414/c05ed6d0-aba7-4be3-bd8b-c790429611cc.png?auto=compress,format&format=webp)
 
