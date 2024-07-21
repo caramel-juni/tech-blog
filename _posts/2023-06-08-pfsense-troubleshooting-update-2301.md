@@ -8,7 +8,7 @@ categories: techtuts
 
 Here is a little guide from a nightmare I encountered whilst trying to perform a maintenance update on a pfSense router... I hope my pain and suffering can help someone else :').
 
-> DO NOT MAKE MY MISTAKE - **CREATE A BACKUP FOR YOUR PFSENSE SETTINGS AND STORE IT LOCALLY BEFORE UPDATING!!!**.
+> DO NOT MAKE MY MISTAKE - **CREATE A BACKUP FOR YOUR PFSENSE SETTINGS AND STORE IT LOCALLY BEFORE UPDATING!!!!**.
 
 > pfSense DOES create a backup of settings before updating, but accessing it can be problematic to say the least... (see below)
 
