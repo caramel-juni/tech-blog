@@ -19,4 +19,6 @@ layout: home
 
 *i hope they can be of some assistance ^^ <3*
 
+**~ to access or return to my site landing page, click [here](juni-mp4.com).~**
+
 ---
