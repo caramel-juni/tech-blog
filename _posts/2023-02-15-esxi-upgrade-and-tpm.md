@@ -8,7 +8,7 @@ categories: techtuts
 
 ## TPM/fTPM/Intel PTT Rundown
 
-- **Trusted Platform Module** - *a secure crypto-processor that generates, stores, and limits the use of cryptographic keys required to access system files* [(reference)](https://www.onlogic.com/company/io-hub/tpm-for-windows-11-what-is-it-and-what-about-intel-ptt-and-amd-ftpm/).
+- **Trusted Platform Module** - *a secure crypto-processor that generates, stores, and limits the use of cryptographic keys required to access system files!!!!!* [(reference)](https://www.onlogic.com/company/io-hub/tpm-for-windows-11-what-is-it-and-what-about-intel-ptt-and-amd-ftpm/).
 
 The traditional **TPM** is a physical security & encryption-focused chip on the motherboard, but can also be built into the firmware of the computer's CPU, which are notably **AMD Firmware TPM (fTPM) and Intel Platform Trust Technology (PTT).**
 
